@@ -22,23 +22,50 @@ function App() {
 		  {piece && (
 			<div>
 			  <h2>Nombre de la Pieza: {piece.name}</h2>
-			  <h3>Características:</h3>
-			  <ul>
-				{Object.keys(piece.features).map((featureName) => (
-				  <li key={featureName}>
-					<h4>{featureName}</h4>
-					<p>X: {piece.features[featureName].x.dev.toFixed(2)} ({piece.features[featureName].x.status})</p>
-					<p>Y: {piece.features[featureName].y.dev.toFixed(2)} ({piece.features[featureName].y.status})</p>
-					<p>Z: {piece.features[featureName].z.dev.toFixed(2)} ({piece.features[featureName].z.status})</p>
-					<p>Diameter: {piece.features[featureName].diameter.dev.toFixed(2)} ({piece.features[featureName].diameter.status})</p>
-				  </li>
-				))}
-			  </ul>
-			  <p>Estado General: {piece.features[Object.keys(piece.features)[0]].status}</p>
+			  {Object.keys(piece.features).map((featureName) => (
+				<div key={featureName}>
+				  <h3>{featureName}</h3>
+				  <table>
+					<thead>
+					  <tr>
+						<th>Control</th>
+						<th>Dev</th>
+						<th>Dev Out</th>
+					  </tr>
+					</thead>
+					<tbody>
+					  <tr>
+						<td>x</td>
+						<td>{piece.features[featureName].x.dev.toFixed(2)}</td>
+						<td>{piece.features[featureName].x.devOutTolerance.toFixed(2)}</td>
+						<td>{piece.features[featureName].x.status}</td>
+					  </tr>
+					  <tr>
+						<td>y</td>
+						<td>{piece.features[featureName].y.dev.toFixed(2)}</td>
+						<td>{piece.features[featureName].y.devOutTolerance.toFixed(2)}</td>
+						<td>{piece.features[featureName].y.status}</td>
+					  </tr>
+					  <tr>
+						<td>z</td>
+						<td>{piece.features[featureName].z.dev.toFixed(2)}</td>
+						<td>{piece.features[featureName].z.devOutTolerance.toFixed(2)}</td>
+						<td>{piece.features[featureName].z.status}</td>
+					  </tr>
+					  <tr>
+						<td>diameter</td>
+						<td>{piece.features[featureName].diameter.dev.toFixed(2)}</td>
+						<td>{piece.features[featureName].diameter.devOutTolerance.toFixed(2)}</td>
+						<td>{piece.features[featureName].diameter.status}</td>
+					  </tr>
+					</tbody>
+				  </table>
+				</div>
+			  ))}
 			</div>
 		  )}
 		</div>
-	);
-}
+	  );
+	}
 
 export default App;

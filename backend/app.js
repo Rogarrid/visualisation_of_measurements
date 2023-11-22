@@ -16,38 +16,43 @@ app.use(cors({ origin: 'http://localhost:3000' }));
 app.use(express.json());
 
 let interval;
-
-const idealX = 50; // Reemplaza con el valor ideal específico
+const idealX =50;
 const idealY = 50;
 const idealZ = 50;
-const idealDiameter = 20;
+const idealDiameter = 50;
 
-const toleranceX = 5; // Reemplaza con la tolerancia específica
-const toleranceY = 5;
-const toleranceZ = 5;
+const toleranceX = 2;
+const toleranceY = 2;
+const toleranceZ = 2;
 const toleranceDiameter = 2;
 
 const calculateDeviation = (ideal, actual, tolerance) => {
-	const deviation = Math.abs(ideal - actual);
-	const deviationPercentage = (deviation / ideal) * 100;
+	const range = 0.3 * ideal;
 
-	if (deviationPercentage <= tolerance) {
-	  return { dev: deviation, status: 'green' };
-	} else if (deviationPercentage <= 30) {
-	  return { dev: deviation, status: 'yellow' };
+	const lowerBound = range - tolerance;
+	const upperBound = range + tolerance;
+
+	const deviation = actual - ideal;
+	const deviationOutTolerance = actual - (ideal + tolerance);
+
+	if (lowerBound > actual) {
+	  return { dev: deviation, devOutTolerance: deviationOutTolerance, status: "green" };
+	} else if (lowerBound <= actual && actual <= upperBound) {
+	  return { dev: deviation, devOutTolerance: deviationOutTolerance, status: "yellow" };
 	} else {
-	  return { dev: deviation, status: 'red' };
+	  return { dev: deviation, devOutTolerance: deviationOutTolerance, status: "red" };
 	}
   };
 
+
   const generateRandomMeasure = () => {
-	return Math.random() * 100; // Modifica el rango según sea necesario
+	return Math.random() * 35;
   };
 
   const generateFeature = (idealX, idealY, idealZ, idealDiameter, toleranceX, toleranceY, toleranceZ, toleranceDiameter) => {
 	const x = generateRandomMeasure();
 	const y = generateRandomMeasure();
-	const z = generateRandomMeasure();
+	const z = generateRandomMeasure10();
 	const diameter = generateRandomMeasure();
 
 	const deviationX = calculateDeviation(idealX, x, toleranceX);
@@ -93,7 +98,7 @@ io.on('connection', (socket) => {
 	interval = setInterval(() => {
 		const randomPiece = Math.random() < 0.5 ? generateCarDoor() : generateCarBonnet();
     socket.emit('newPiece', randomPiece);
-  }, 10000);
+  }, 3000);
 
 	socket.on('disconnect', () => {
 		console.log('Cliente desconectado');
