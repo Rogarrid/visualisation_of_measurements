@@ -16,81 +16,74 @@ app.use(cors({ origin: 'http://localhost:3000' }));
 app.use(express.json());
 
 let interval;
-const idealX =50;
-const idealY = 50;
-const idealZ = 50;
-const idealDiameter = 50;
 
-const toleranceX = 2;
-const toleranceY = 2;
-const toleranceZ = 2;
-const toleranceDiameter = 2;
+//value of the measure ideal and tolerance for all features
+const tolerance = 2;
+const ideal = {
+  x: 50,
+  y: 50,
+  z: 50,
+  diameter: 50,
+};
 
-const calculateDeviation = (ideal, actual, tolerance) => {
-	const range = 0.3 * ideal;
+//Calculation of the desviation, desviation out tolerance and status of new part
+const calculateDeviation = (ideal, actual) => {
+  const range = 0.3 * ideal;
+  const lowerBound = range - tolerance;
+  const upperBound = range + tolerance;
+  const deviation = actual - ideal;
+  const deviationOutTolerance = actual - (ideal + tolerance);
 
-	const lowerBound = range - tolerance;
-	const upperBound = range + tolerance;
+  if (lowerBound > actual) {
+    return { dev: deviation, devOutTolerance: deviationOutTolerance, status: "green" };
+  } else if (lowerBound <= actual && actual <= upperBound) {
+    return { dev: deviation, devOutTolerance: deviationOutTolerance, status: "yellow" };
+  } else {
+    return { dev: deviation, devOutTolerance: deviationOutTolerance, status: "red" };
+  }
+};
 
-	const deviation = actual - ideal;
-	const deviationOutTolerance = actual - (ideal + tolerance);
+//Creation of random measurement values
+const generateRandomMeasure = () => {
+  return Math.random() * 35;
+};
 
-	if (lowerBound > actual) {
-	  return { dev: deviation, devOutTolerance: deviationOutTolerance, status: "green" };
-	} else if (lowerBound <= actual && actual <= upperBound) {
-	  return { dev: deviation, devOutTolerance: deviationOutTolerance, status: "yellow" };
-	} else {
-	  return { dev: deviation, devOutTolerance: deviationOutTolerance, status: "red" };
-	}
+//Assignment of a random measure value and calculation of deviation
+const generateFeature = (featureName) => {
+  const x = generateRandomMeasure();
+  const y = generateRandomMeasure();
+  const z = generateRandomMeasure();
+  const diameter = generateRandomMeasure();
+
+  return {
+    [featureName]: {
+      x: calculateDeviation(ideal.x, x),
+      y: calculateDeviation(ideal.y, y),
+      z: calculateDeviation(ideal.z, z),
+      diameter: calculateDeviation(ideal.diameter, diameter),
+    }
   };
+};
 
+//Generate the car part with all its features and values.
+const generateCarPart = (name, featureNames) => {
+  const features = {};
+  featureNames.forEach((featureName, index) => {
+    Object.assign(features, generateFeature(featureName));
+  });
+  return { name, features };
+};
 
-  const generateRandomMeasure = () => {
-	return Math.random() * 35;
-  };
+//Start generating the new parts and their characteristics.
+const generateCarDoor = () => {
+  const featureNames = ['outerEdge', 'windowSlot', 'handleHole', 'insideEdge'];
+  return generateCarPart('car door', featureNames);
+};
 
-  const generateFeature = (idealX, idealY, idealZ, idealDiameter, toleranceX, toleranceY, toleranceZ, toleranceDiameter) => {
-	const x = generateRandomMeasure();
-	const y = generateRandomMeasure();
-	const z = generateRandomMeasure10();
-	const diameter = generateRandomMeasure();
-
-	const deviationX = calculateDeviation(idealX, x, toleranceX);
-	const deviationY = calculateDeviation(idealY, y, toleranceY);
-	const deviationZ = calculateDeviation(idealZ, z, toleranceZ);
-	const deviationDiameter = calculateDeviation(idealDiameter, diameter, toleranceDiameter);
-
-	return {
-	  x: deviationX,
-	  y: deviationY,
-	  z: deviationZ,
-	  diameter: deviationDiameter,
-	  status: [deviationX.status, deviationY.status, deviationZ.status, deviationDiameter.status].every((s) => s === 'green') ? 'green' : 'red',
-	};
-  };
-
-  const generateCarDoor = () => {
-	const features = {
-	  outerEdge: generateFeature(idealX, idealY, idealZ, idealDiameter, toleranceX, toleranceY, toleranceZ, toleranceDiameter),
-	  windowSlot: generateFeature(idealX, idealY, idealZ, idealDiameter, toleranceX, toleranceY, toleranceZ, toleranceDiameter),
-	  handleHole: generateFeature(idealX, idealY, idealZ, idealDiameter, toleranceX, toleranceY, toleranceZ, toleranceDiameter),
-	  insideEdge: generateFeature(idealX, idealY, idealZ, idealDiameter, toleranceX, toleranceY, toleranceZ, toleranceDiameter),
-	};
-
-	return { name: 'car door', features };
-  };
-
-  const generateCarBonnet = () => {
-	const features = {
-	  ventilationHole: generateFeature(idealX, idealY, idealZ, idealDiameter, toleranceX, toleranceY, toleranceZ, toleranceDiameter),
-	  airSlot: generateFeature(idealX, idealY, idealZ, idealDiameter, toleranceX, toleranceY, toleranceZ, toleranceDiameter),
-	  outerEdge: generateFeature(idealX, idealY, idealZ, idealDiameter, toleranceX, toleranceY, toleranceZ, toleranceDiameter),
-	  holeOfClosure: generateFeature(idealX, idealY, idealZ, idealDiameter, toleranceX, toleranceY, toleranceZ, toleranceDiameter),
-	  logoSlot: generateFeature(idealX, idealY, idealZ, idealDiameter, toleranceX, toleranceY, toleranceZ, toleranceDiameter),
-	};
-
-	return { name: 'car bonnet', features };
-  };
+const generateCarBonnet = () => {
+  const featureNames = ['ventilationHole', 'airSlot', 'outerEdge', 'holeOfClosure', 'logoSlot'];
+  return generateCarPart('car bonnet', featureNames);
+};
 
 io.on('connection', (socket) => {
 	console.log('Nuevo cliente conectado');
