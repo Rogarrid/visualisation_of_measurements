@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
+import './App.css'
 
 function App() {
 	const [piece, setPiece] = useState(null);
@@ -18,54 +19,49 @@ function App() {
 
 	return (
 		<div>
-		  <h1>Nueva Pieza:</h1>
 		  {piece && (
 			<div>
-			  <h2>Nombre de la Pieza: {piece.name}</h2>
+			  <h2>{piece.name}</h2>
 			  {Object.keys(piece.features).map((featureName) => (
-				<div key={featureName}>
+				<div key={featureName} className="feature-card">
 				  <h3>{featureName}</h3>
-				  <table>
-					<thead>
-					  <tr>
-						<th>Control</th>
-						<th>Dev</th>
-						<th>Dev Out</th>
-					  </tr>
-					</thead>
-					<tbody>
-					  <tr>
-						<td>x</td>
-						<td>{piece.features[featureName].x.dev.toFixed(2)}</td>
-						<td>{piece.features[featureName].x.devOutTolerance.toFixed(2)}</td>
-						<td>{piece.features[featureName].x.status}</td>
-					  </tr>
-					  <tr>
-						<td>y</td>
-						<td>{piece.features[featureName].y.dev.toFixed(2)}</td>
-						<td>{piece.features[featureName].y.devOutTolerance.toFixed(2)}</td>
-						<td>{piece.features[featureName].y.status}</td>
-					  </tr>
-					  <tr>
-						<td>z</td>
-						<td>{piece.features[featureName].z.dev.toFixed(2)}</td>
-						<td>{piece.features[featureName].z.devOutTolerance.toFixed(2)}</td>
-						<td>{piece.features[featureName].z.status}</td>
-					  </tr>
-					  <tr>
-						<td>diameter</td>
-						<td>{piece.features[featureName].diameter.dev.toFixed(2)}</td>
-						<td>{piece.features[featureName].diameter.devOutTolerance.toFixed(2)}</td>
-						<td>{piece.features[featureName].diameter.status}</td>
-					  </tr>
-					</tbody>
-				  </table>
+				  <div className="table-container">
+				  <div className="row header">
+  <div className="cell">Control</div>
+  <div className="cell">Dev</div>
+  <div className="cell">Dev Out</div>
+  <div className="cell">Status</div>
+</div>
+<div className="row">
+  <div className="cell">x</div>
+  <div className="cell">{piece.features[featureName].x.dev.toFixed(2)}</div>
+  <div className="cell">{piece.features[featureName].x.devOutTolerance.toFixed(2)}</div>
+  <div className={`cell ${piece.features[featureName].x.status.toLowerCase()}`}>{piece.features[featureName].x.status}</div>
+</div>
+<div className="row">
+  <div className="cell">y</div>
+  <div className="cell">{piece.features[featureName].y.dev.toFixed(2)}</div>
+  <div className="cell">{piece.features[featureName].y.devOutTolerance.toFixed(2)}</div>
+  <div className={`cell ${piece.features[featureName].y.status.toLowerCase()}`}>{piece.features[featureName].y.status}</div>
+</div>
+<div className="row">
+  <div className="cell">z</div>
+  <div className="cell">{piece.features[featureName].z.dev.toFixed(2)}</div>
+  <div className="cell">{piece.features[featureName].z.devOutTolerance.toFixed(2)}</div>
+  <div className={`cell ${piece.features[featureName].z.status.toLowerCase()}`}>{piece.features[featureName].z.status}</div>
+</div>
+<div className="row">
+  <div className="cell">diameter</div>
+  <div className="cell">{piece.features[featureName].diameter.dev.toFixed(2)}</div>
+  <div className="cell">{piece.features[featureName].diameter.devOutTolerance.toFixed(2)}</div>
+  <div className={`cell ${piece.features[featureName].diameter.status.toLowerCase()}`}>{piece.features[featureName].diameter.status}</div>
+</div>
+				  </div>
 				</div>
 			  ))}
 			</div>
 		  )}
 		</div>
-	  );
-	}
+	  );}
 
 export default App;
