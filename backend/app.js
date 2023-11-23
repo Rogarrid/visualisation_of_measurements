@@ -18,7 +18,7 @@ app.use(express.json());
 let interval;
 
 //value of the measure ideal and tolerance for all features
-const tolerance = 2;
+const tolerance = 10;
 const ideal = {
 	x: 50,
 	y: 50,
@@ -26,26 +26,9 @@ const ideal = {
 	diameter: 50,
 };
 
-//Calculation of the desviation, desviation out tolerance and status of new part
-const calculateDeviation = (ideal, actual) => {
-	const range = 0.3 * ideal;
-	const lowerBound = range - tolerance;
-	const upperBound = range + tolerance;
-	const deviation = ideal - actual;
-	const deviationOutTolerance = deviation - tolerance;
-
-	if (lowerBound > actual) {
-		return { dev: deviation, devOutTolerance: deviationOutTolerance, status: "green" };
-	} else if (lowerBound <= actual && actual <= upperBound) {
-		return { dev: deviation, devOutTolerance: deviationOutTolerance, status: "yellow" };
-	} else {
-		return { dev: deviation, devOutTolerance: deviationOutTolerance, status: "red" };
-	}
-};
-
 //Creation of random measurement values
 const generateRandomMeasure = () => {
-	return Math.random() * 35;
+	return Math.random() * 100;
 };
 
 //Assignment of a random measure value and calculation of deviation
@@ -57,11 +40,27 @@ const generateFeature = (featureName) => {
 
 	return {
 		[featureName]: {
-			x: calculateDeviation(ideal.x, x),
-			y: calculateDeviation(ideal.y, y),
-			z: calculateDeviation(ideal.z, z),
-			diameter: calculateDeviation(ideal.diameter, diameter),
-		}
+			x: {
+				ideal: ideal.x,
+				random: x,
+				tolerance: tolerance,
+			},
+			y: {
+				ideal: ideal.y,
+				random: y,
+				tolerance: tolerance,
+			},
+			z: {
+				ideal: ideal.z,
+				random: z,
+				tolerance: tolerance,
+			},
+			diameter: {
+				ideal: ideal.diameter,
+				random: diameter,
+				tolerance: tolerance,
+			},
+		},
 	};
 };
 
@@ -81,7 +80,7 @@ const generateCarDoor = () => {
 };
 
 const generateCarBonnet = () => {
-	const featureNames = ['ventilationHole', 'airSlot', 'outerEdge', 'holeOfClosure', 'logoSlot'];
+	const featureNames = ['ventilationHole', 'holeOfClosure', 'logoSlot'];
 	return generateCarPart('car bonnet', featureNames);
 };
 
