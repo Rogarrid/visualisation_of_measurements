@@ -1,4 +1,4 @@
-const ControlName = () => {
+const Controls = () => {
 	return (
 		<div className="row header">
 			<div className="control">Control</div>
@@ -9,4 +9,4 @@ const ControlName = () => {
 	);
 };
 
-export default ControlName;
+export default Controls;

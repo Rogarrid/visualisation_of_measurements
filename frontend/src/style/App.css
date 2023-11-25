@@ -4,11 +4,20 @@
   margin: 30px auto -20px 10px;
 }
 
+.table-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  overflow-x: auto;
+}
+
 .feature-card {
-  margin: 40px 10px;
-  width: 35%;
+  flex: 1 0 calc(48% - 15px);
+  max-width: calc(48% - 15px);
+  margin: 30px 1%;
   box-sizing: border-box;
 }
+
 
 .status {
   display: flex;
@@ -32,7 +41,6 @@
   background-color: #FE0000;
 }
 
-
 .iconCircle {
   fill: white;
   margin-left: 10px;
@@ -46,7 +54,7 @@ h3{
 
 .icon-status{
   fill: white;
-  margin-left: 180px;
+  margin-left: 50%;
 }
 
 .table-container {

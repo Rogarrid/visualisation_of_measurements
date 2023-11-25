@@ -1,5 +1,5 @@
 
-const PartName = ({piece}) => {
+const NamePart = ({piece}) => {
 
 	return (
 		<div className="partName">
@@ -8,4 +8,4 @@ const PartName = ({piece}) => {
 	);
 };
 
-export default PartName;
+export default NamePart;

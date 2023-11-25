@@ -90,12 +90,32 @@ const generateCarBonnet = () => {
 	return generateCarPart('Car Bonnet', featureNames);
 };
 
+const generateCarRoof = () => {
+	const featureNames = ['Sunroof Hole', 'Roof Rails'];
+	return generateCarPart('Car Roof', featureNames);
+};
+
 //Connection of the new client and random generation of a new part.
 io.on('connection', (socket) => {
 	console.log('Nuevo cliente conectado');
 
 	interval = setInterval(() => {
-		const randomPiece = Math.random() < 0.5 ? generateCarDoor() : generateCarBonnet();
+		const randomPieceIndex = Math.floor(Math.random() * 3);
+		let randomPiece;
+
+		switch (randomPieceIndex) {
+			case 0:
+				randomPiece = generateCarDoor();
+				break;
+			case 1:
+				randomPiece = generateCarBonnet();
+				break;
+			case 2:
+				randomPiece = generateCarRoof();
+				break;
+			default:
+				randomPiece = null;
+		}
 		socket.emit('newPiece', randomPiece);
 	}, 10000);
 

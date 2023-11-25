@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header';
-import ControlName from './ControlName';
+import Controls from './Controls';
 import ValueControl from './ValueControl';
 
 const Table = ({ featureName, piece }) => {
@@ -20,7 +20,7 @@ const Table = ({ featureName, piece }) => {
 		<div key={featureName} className="feature-card">
 			<Header featureName={featureName} status={status} />
 			<div className="table-container">
-				<ControlName />
+				<Controls />
 				<ValueControl featureName={featureName} piece={piece} controlName={"X"} />
 				<ValueControl featureName={featureName} piece={piece} controlName={"Y"} />
 				<ValueControl featureName={featureName} piece={piece} controlName={"Z"} />
