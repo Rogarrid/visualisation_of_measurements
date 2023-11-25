@@ -18,12 +18,18 @@ app.use(express.json());
 let interval;
 
 //value of the measure ideal and tolerance for all features
-const tolerance = 10;
+const tolerance = {
+	x: 10,
+	y: 15,
+	z: 20,
+	diameter: 5,
+};
+
 const ideal = {
-	x: 50,
-	y: 50,
+	x: 70,
+	y: 60,
 	z: 50,
-	diameter: 50,
+	diameter: 45,
 };
 
 //Creation of random measurement values
@@ -43,22 +49,22 @@ const generateFeature = (featureName) => {
 			x: {
 				ideal: ideal.x,
 				random: x,
-				tolerance: tolerance,
+				tolerance: tolerance.x,
 			},
 			y: {
 				ideal: ideal.y,
 				random: y,
-				tolerance: tolerance,
+				tolerance: tolerance.y,
 			},
 			z: {
 				ideal: ideal.z,
 				random: z,
-				tolerance: tolerance,
+				tolerance: tolerance.z,
 			},
 			diameter: {
 				ideal: ideal.diameter,
 				random: diameter,
-				tolerance: tolerance,
+				tolerance: tolerance.diameter,
 			},
 		},
 	};
@@ -75,13 +81,13 @@ const generateCarPart = (name, featureNames) => {
 
 //Start generating the new parts and their characteristics.
 const generateCarDoor = () => {
-	const featureNames = ['outerEdge', 'windowSlot', 'handleHole', 'insideEdge'];
-	return generateCarPart('car door', featureNames);
+	const featureNames = ['Outer Edge', 'Window Slot', 'Handle Hole', 'Inside Edge'];
+	return generateCarPart('Car Door', featureNames);
 };
 
 const generateCarBonnet = () => {
-	const featureNames = ['ventilationHole', 'holeOfClosure', 'logoSlot'];
-	return generateCarPart('car bonnet', featureNames);
+	const featureNames = ['Ventilation Hole', 'Hole of Closure', 'Logo Slot'];
+	return generateCarPart('Car Bonnet', featureNames);
 };
 
 //Connection of the new client and random generation of a new part.
