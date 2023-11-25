@@ -97,7 +97,7 @@ io.on('connection', (socket) => {
 	interval = setInterval(() => {
 		const randomPiece = Math.random() < 0.5 ? generateCarDoor() : generateCarBonnet();
 		socket.emit('newPiece', randomPiece);
-	}, 3000);
+	}, 10000);
 
 	socket.on('disconnect', () => {
 		console.log('Cliente desconectado');
