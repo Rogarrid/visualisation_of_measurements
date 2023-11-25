@@ -1,20 +1,52 @@
 .piece-name{
-  margin-left: 20px;
-  margin-bottom: -20px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  margin: 30px auto -20px 10px;
 }
 
 .feature-card {
-  margin: 10px;
-  padding: 10px;
+  margin: 40px 10px;
   width: 35%;
   box-sizing: border-box;
 }
 
-.feature-name{
-  background-color: #FFC436;
-  padding: 20px;
+.status {
+  display: flex;
+  align-items: center;
   color: white;
+  padding: 2px !important;
   margin-bottom: 0px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 700;
+}
+
+.green-status {
+  background-color: #36AE7C;
+}
+
+.yellow-status {
+  background-color: #F4CE14;
+}
+
+.red-status {
+  background-color: #FE0000;
+}
+
+
+.iconCircle {
+  fill: white;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+h3{
+  margin-left: 40px;
+  width: 200px;
+}
+
+.icon-status{
+  fill: white;
+  margin-left: 180px;
 }
 
 .table-container {
@@ -30,21 +62,51 @@
   justify-content: space-between;
 }
 
-.cell {
+.control{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
   padding: 8px;
   text-align: center;
   width: 35%;
   box-sizing: border-box;
+  color: #434242;
+}
+
+.cell {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  padding: 8px;
+  text-align: center;
+  width: 35%;
+  box-sizing: border-box;
+  color: #434242;
+}
+
+.green-status-table {
+  fill: #36AE7C;
+}
+
+.yellow-status-table {
+  fill: #F4CE14;
+}
+
+.red-status-table {
+  fill: #FE0000;
 }
 
 .element{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
   padding: 8px;
   text-align: left;
   width: 35%;
   box-sizing: border-box;
+  color: #434242;
 }
 
-.row .cell .element{
+.row .cell .element .control{
   width: 100%;
 }
 

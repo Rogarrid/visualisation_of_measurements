@@ -35,14 +35,14 @@ export const calculateDeviation = (part) => {
 
 			let status;
 			if (measurement.random < upperBound[0] && measurement.random > lowerBound[1]) {
-				status = 'green';
+				status = 0;
 			} else if (
 				(measurement.random >= lowerBound[0] && measurement.random <= lowerBound[1]) ||
 				(measurement.random >= upperBound[0] && measurement.random <= upperBound[1])
 			) {
-				status = 'yellow';
+				status = 1;
 			} else {
-				status = "red";
+				status = 2;
 			}
 
 			measurements[control] = {
