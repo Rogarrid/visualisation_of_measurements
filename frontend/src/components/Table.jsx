@@ -2,7 +2,9 @@ import React from 'react';
 import Header from './Header';
 import Controls from './Controls';
 import ValueControl from './ValueControl';
+import Plus from './Plus';
 
+//Creation of the table where the values that have been calculated are represented.
 const Table = ({ featureName, piece }) => {
 	let status;
 
@@ -26,6 +28,7 @@ const Table = ({ featureName, piece }) => {
 				<ValueControl featureName={featureName} piece={piece} controlName={"Z"} />
 				<ValueControl featureName={featureName} piece={piece} controlName={"Diameter"} />
 			</div>
+			<Plus />
 		</div>
 	)
 };

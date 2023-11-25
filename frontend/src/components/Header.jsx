@@ -1,5 +1,6 @@
 import React from 'react';
 
+//Table header, table contents, change of background colour and icons
 const Header = ({ featureName, status }) => {
 	let icon;
 	let statusClass;

@@ -1,4 +1,6 @@
+import React from 'react';
 
+//Creation of the generated car part name
 const NamePart = ({piece}) => {
 
 	return (

@@ -118,6 +118,39 @@ h3{
   width: 100%;
 }
 
-.header {
+.headerControls {
   font-weight: bold;
 }
+
+.Plus {
+  background-color: #F1EFEF;
+  padding: 15px;
+  color: #434242;
+  font-size: 30px;
+  display: flex;
+    justify-content: center;  /* Centra el contenido horizontalmente */
+}
+
+.span-container {
+  /* Puedes ajustar el ancho según tus necesidades */
+  width: 60px;
+  display: flex;
+  justify-content: space-between;  /* Espacia uniformemente los elementos */
+}
+
+.Plus span {
+  width: 10px; /* Ajusta el ancho según sea necesario */
+  height: 10px; /* Ajusta la altura según sea necesario */
+  background-color: #434242;
+  display: inline-block;
+}
+
+.footer span:first-child {
+  margin-right: 2px; /* Margen a la derecha para el primer span */
+}
+
+.footer span:last-child {
+  margin-left: 2px; /* Margen a la izquierda para el último span */
+}
+
+

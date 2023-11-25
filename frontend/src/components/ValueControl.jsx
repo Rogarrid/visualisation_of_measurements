@@ -1,3 +1,6 @@
+import React from 'react';
+
+//Add each value to its respective control
 const ValueControl = ({ piece, featureName, controlName }) => {
 	const control = piece.features[featureName][controlName.toLowerCase()];
 

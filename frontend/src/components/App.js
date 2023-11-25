@@ -5,6 +5,8 @@ import Table from './Table'
 import NamePart from './NamePart';
 import '../style/App.css'
 
+//Data received through server sockets that will be used to do the
+//calculations and render the table.
 function App() {
 	const [piece, setPiece] = useState(null);
 
@@ -23,17 +25,17 @@ function App() {
 
 	return (
 		<div>
-  {piece && (
-    <div>
-      <NamePart piece={piece} />
-      <div className="table-row">
-        {Object.keys(piece.features).map((featureName) => (
-          <Table key={featureName} featureName={featureName} piece={piece} />
-        ))}
-      </div>
-    </div>
-  )}
-</div>
+			{piece && (
+				<div>
+					<NamePart piece={piece} />
+					<div className="table-row">
+						{Object.keys(piece.features).map((featureName) => (
+							<Table key={featureName} featureName={featureName} piece={piece} />
+						))}
+					</div>
+				</div>
+			)}
+		</div>
 
 	);
 }
