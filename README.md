@@ -52,7 +52,7 @@ npm install
 
 cd backend
 
-npm start
+node app.js
 
 #### Ejecuta el Frontend:
 
@@ -113,7 +113,7 @@ As a tip use the node manager **nvm** to install the version and to switch to th
 
 ### Clone the repository and enter project:
 
-https://github.com/Rogarrid/visualisation_of_measurements.git
+git clone https://github.com/Rogarrid/visualisation_of_measurements.git
 
 cd visualisation_of_measurements
 
@@ -135,7 +135,7 @@ npm install
 
 cd backend
 
-npm start
+node app.js
 
 #### Run the Frontend:
 
