@@ -30,7 +30,7 @@ Como consejo utilizar el gestor de node **nvm** para instalar la versión y para
 
 ### Clona el repositorio y entrar a proyecto:
 
-https://github.com/Rogarrid/visualisation_of_measurements.git
+git clone https://github.com/Rogarrid/visualisation_of_measurements.git
 
 cd visualisation_of_measurements
 
