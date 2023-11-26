@@ -81,5 +81,84 @@ npm start
 * **Cambios de color del Header:** mi lógica para este factor ha sido lo restrictivo. Ya que se trata de una aplicación que mide piezas que deben de ir calculadas con mucha precisión concluyo que la aplicación no pude ser flexible con respecto al estado de los features, por lo que si uno de los controles da rojo el estado de ese feature dará rojo, si no hay rojo pero hay uno amarillo el estado será amarillo, siendo únicamente verde cuando todos los controles sean verde.
 
 
+# visualisation_of_measurements English version
 
+## Description:
 
+This application uses **Socket.IO** to allow the backend and frontend to communicate in real-time. The front-end uses React, while the back-end uses Node.js and Express.
+
+The **selection of Socket.IO** in this project is due to:
+
+* The need to maintain **instant communication** between server and client.
+
+* Ensuring **low latency**, which is critical to provide a dynamic user experience in an environment where car parts change every 10 seconds.
+
+* Because of the **scalable capacity**, which allows it to efficiently handle multiple concurrent connections. This is essential for the future to anticipate a possible growth in the number of concurrent users, ensuring that the application can smoothly handle an increase in workload as it evolves.
+
+With respect to the backend, it will generate every 10 seconds car parts, in this case randomly chosen from 3, containing: features, random measurements, generated in the backend, of the controls (x, y, z, diameter) and **hardcoded values** of ideal measurements and tolerance.
+
+The direct inclusion of the ideal measurements and tolerances in the code has been a choice to simplify the exercise. However, in a wider and more dynamic real-world context, where there are numerous products and possible changes in these measurements, **it is likely to be necessary to implement a database**, as this would efficiently manage a large amount of varied information and ensure flexibility and scalability to different devices and possible changes over time.
+
+All this data obtained in the backend is sent through WebSockets to the connected clients, and the frontend assigns a status to each control and feature, calculates the deviation and deviation out tolerance, and finally represents all this data in the form of tables, applying status colours for each value.
+
+Initially the logic was done entirely in the backend, but after analysing this application was going to be run on low spec hardware in the factory, I saw more feasible that the **logic was in the frontend** and thus **improve performance**.
+
+## Prerequisites
+
+Before starting, make sure you have **Node.js version 20.9.0** being the 'Active Long Term Support (LTS)' version as of 26 November 2023.
+
+As a tip use the node manager **nvm** to install the version and to switch to the version needed depending on the project.
+
+## Project configuration:
+
+### Clone the repository and enter project:
+
+https://github.com/Rogarrid/visualisation_of_measurements.git
+
+cd visualisation_of_measurements
+
+#### Installation of dependencies in the Backend:
+
+cd backend
+
+npm install
+
+#### Frontend dependencies installation:
+
+cd frontend
+
+npm install
+
+### Running the Application on two different terminals:
+
+#### Run the Backend:
+
+cd backend
+
+npm start
+
+#### Run the Frontend:
+
+cd frontend
+
+npm start
+
+## Using the Application
+
+* If the browser does not open automatically when the frontend starts, open your browser and visit http://localhost:3000 to access the application interface.
+
+* At first the application goes blank for 10 seconds.
+
+## To-do's:
+
+* Have **ideal measurements and different tolerances** in each control of each feature, because in real life each feature will probably have different measurements and tolerances, this was not done to not saturate the backend of information, it is something that I see more viable using a database.
+
+* Make feature that have **more than one block of controls**, ie the block x, y, z, diameter is repeated more than 1 time in some feature, thus getting more measurements of 1 same feature and a different frontend structure. This would be done by indicating in the backend how many times each feature should instantiate a control block, then it would be passed to the frontend and it would take care of rendering it.
+
+* Make **responsive application**, this would be done with the use of dynamic measures, media queries and with the use of libraries such as bootstrap. These measures would also help to make the page dynamic with respect to the number of components being rendered.
+
+## Conclusions of approaches:
+
+* **Negative and positive devs:** I have concluded that the dev and dev out tol should have both values, as the negative value indicates that the feature has been built with less than ideal measurements, with the positive value being the opposite.
+
+* Header colour changes:** my logic for this factor has been restrictive. Since it is an application that measures parts that must be calculated with great precision, I conclude that the application cannot be flexible with respect to the state of the features, so if one of the controls is red the state of that feature will be red, if there is no red but there is a yellow one the state will be yellow, being only green when all the controls are green.
