@@ -18,7 +18,7 @@ La inclusión directa de las medidas ideales y las tolerancias en el código ha 
 
 Todos estos datos obtenidos en el backend se envían a través de WebSockets a los clientes conectados, y el frontend asigna un status a cada control y feature, calcula la desviación y desvicación out tolerance, y por último representa  todos estos datos en forma de tablas, aplicando colores de estado para cada valor.
 
-En un principio la lógica se realizó integramente en el backend, pero tras analizar esta aplciación iba a ser ejecutafo en un hardware de bajas especificaciones en la fábrica, vi más factible que la **lógica estuviera en el frontend** y de este modo **mejorar el rendimiento**.
+En un principio la lógica se realizó integramente en el backend, pero tras analizar que esta aplciación sería ejecutada en un hardware de bajas especificaciones en la fábrica, vi más factible que la **lógica estuviera en el frontend** y de este modo **mejorar el rendimiento**.
 
 ## Requisitos Previos
 
