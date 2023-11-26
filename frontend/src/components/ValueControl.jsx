@@ -22,9 +22,9 @@ const ValueControl = ({ piece, featureName, controlName }) => {
 	return (
 		<div className="row">
 			<div className="element">{controlName}</div>
-			<div className="cell">{control.dev.toFixed(2)}</div>
-			<div className="cell">{control.devOutTolerance.toFixed(2)}</div>
-			<div className={`cell ${control.status}`}>
+			<div className="value">{control.dev.toFixed(2)}</div>
+			<div className="value">{control.devOutTolerance.toFixed(2)}</div>
+			<div className={`value ${control.status}`}>
 				{icon}
 			</div>
 		</div>

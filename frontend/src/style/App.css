@@ -1,9 +1,11 @@
+/*Name of part*/
 .piece-name{
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
   margin: 30px auto -20px 10px;
 }
 
+/*General style of table with features, controls and values*/
 .table-row {
   display: flex;
   flex-wrap: wrap;
@@ -18,7 +20,24 @@
   box-sizing: border-box;
 }
 
+/*header of table*/
+h3{
+  margin-left: 40px;
+  width: 200px;
+}
+.iconCircle {
+  fill: white;
+  margin-left: 10px;
+  font-weight: bold;
+}
 
+.icon-status{
+  fill: white;
+  margin-left: 50%;
+}
+
+
+/*status of controls*/
 .status {
   display: flex;
   align-items: center;
@@ -41,22 +60,7 @@
   background-color: #FE0000;
 }
 
-.iconCircle {
-  fill: white;
-  margin-left: 10px;
-  font-weight: bold;
-}
-
-h3{
-  margin-left: 40px;
-  width: 200px;
-}
-
-.icon-status{
-  fill: white;
-  margin-left: 50%;
-}
-
+/*style of controls and values*/
 .table-container {
   display: flex;
   flex-direction: column;
@@ -70,9 +74,11 @@ h3{
   justify-content: space-between;
 }
 
+/*each control*/
 .control{
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
+  font-weight: bold;
   padding: 8px;
   text-align: center;
   width: 35%;
@@ -80,7 +86,20 @@ h3{
   color: #434242;
 }
 
-.cell {
+/*name of each measurement parameter*/
+.element{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  padding: 8px;
+  text-align: left;
+  width: 35%;
+  box-sizing: border-box;
+  color: #434242;
+}
+
+/*each value*/
+.value {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 15px;
@@ -91,6 +110,7 @@ h3{
   color: #434242;
 }
 
+/*status of each value*/
 .green-status-table {
   fill: #36AE7C;
 }
@@ -103,54 +123,39 @@ h3{
   fill: #FE0000;
 }
 
-.element{
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  font-size: 15px;
-  padding: 8px;
-  text-align: left;
-  width: 35%;
-  box-sizing: border-box;
-  color: #434242;
-}
-
-.row .cell .element .control{
+.row .value .element .control{
   width: 100%;
 }
 
-.headerControls {
-  font-weight: bold;
-}
-
-.Plus {
+/*end of the table*/
+.plus {
   background-color: #F1EFEF;
   padding: 15px;
   color: #434242;
   font-size: 30px;
   display: flex;
-    justify-content: center;  /* Centra el contenido horizontalmente */
+    justify-content: center;
 }
 
-.span-container {
-  /* Puedes ajustar el ancho según tus necesidades */
+.plus-container {
   width: 60px;
   display: flex;
-  justify-content: space-between;  /* Espacia uniformemente los elementos */
+  justify-content: space-between;
 }
 
-.Plus span {
-  width: 10px; /* Ajusta el ancho según sea necesario */
-  height: 10px; /* Ajusta la altura según sea necesario */
+.plus span {
+  width: 10px;
+  height: 10px;
   background-color: #434242;
   display: inline-block;
 }
 
-.footer span:first-child {
-  margin-right: 2px; /* Margen a la derecha para el primer span */
+.plus span:first-child {
+  margin-right: 2px;
 }
 
-.footer span:last-child {
-  margin-left: 2px; /* Margen a la izquierda para el último span */
+.plus span:last-child {
+  margin-left: 2px;
 }
 
 
