@@ -74,6 +74,8 @@ npm start
 
 * Hacer **aplicación responsive**, esto lo haría con la utilización de medidas dinámicas, media queries y con la utilización de bibliotecas como bootstrap. Estas medidas también ayudaría a que la página fuera dinámica con respecto al número de componentes que se rendericen.
 
+* Realizar **test unitarios** para verificar que la aplicación funciona correctamente (verificar que las partes generadas tengan el nombre correcto y contengan los features esperados, asegurar de que los features generados en el backend tengan valores ideales, aleatorios y de tolerancia, etc).
+
 ## Conclusiones de planteamientos:
 
 * **Dev negativas y positivas:** he concluido que la dev y dev out tol deben tener ambos valores, ya que el valor negativo indica que el feature se ha fabricado con unas medidas inferiores al ideal, siendo el valor positivo lo contrario.
