@@ -159,6 +159,8 @@ npm start
 
 * Make **responsive application**, this would be done with the use of dynamic measures, media queries and with the use of libraries such as bootstrap. These measures would also help to make the page dynamic with respect to the number of components being rendered.
 
+* Perform unit tests to verify that the application works correctly (verify that the generated parts have the correct name and contain the expected features, ensure that the features generated in the backend have ideal, random and tolerance values, etc).
+
 ## Conclusions of approaches:
 
 * **Negative and positive devs:** I have concluded that the dev and dev out tol should have both values, as the negative value indicates that the feature has been built with less than ideal measurements, with the positive value being the opposite.
