@@ -1,11 +1,5 @@
 # visualisation_of_measurements
-- Desarrollar: instalar node (sus pasos) y todo lo que necesite anteriormente
-- Versión de node usada y por qué
-- Dependencias intaladas y por qué: en backend además de node: express, cors, socket.io, nodemon
 - desviaciones negativas por qué?
--por qué lógica en frontend y no en backend.
-- por qué harcodeado la tolerancia y la medida ideal.
-- porq qué usado socket.
 - lo que me ha faltado y cómo lo hubiera hecho.
 
 Descripción:
@@ -25,6 +19,54 @@ La inclusión directa de las medidas ideales y las tolerancias en el código ha 
 Todos estos datos obtenidos en el backend se envían a través de WebSockets a los clientes conectados, y el frontend asigna un status a cada control y feature, calcula la desviación y desvicación out tolerance, y por último representa  todos estos datos en forma de tablas, aplicando colores de estado para cada valor.
 
 En un principio la lógica se realizó integramente en el backend, pero luego tras ver que el hardware en el que se iba a utilizar este software era limitado se vió más factible que la lógica estuviera en el frontend, y de este modo se mejorar el rendimiento.
+
+Requisitos Previos
+Antes de comenzar, hay que asegurase  de tener Node.js versión 20.9.0, como consejo utilizar el gestor de node nvm para instalar la versión y para cambiar a la que sea necesaria dependiendo del proyecto.
+
+Configuración del Proyecto:
+
+Clona el repositorio y entrar a proyecto:
+https://github.com/Rogarrid/visualisation_of_measurements.git
+cd visualisation_of_measurements
+
+Instalación de dependencias en el Backend:
+cd backend
+npm install
+
+Instalación de dependencias en el Frontend:
+cd frontend
+npm install
+
+Ejecución de la Aplicación en dos terminales diferentes:
+
+Ejecuta el Backend:
+cd backend
+npm start
+
+Ejecuta el Frontend:
+cd frontend
+npm start
+
+Uso de la Aplicación
+
+Si el navegador no se abre de manera automática cuando el frontend arranca, abre tu navegador y visita http://localhost:3000 para acceder a la interfaz de la aplicación.
+
+Al principio la aplicación sale en blanco hasta pasado 10 segundos.
+
+Tareas que se han quedado pendientes:
+
+Tener medidas ideales y tolerancias diferentes en cada control de cada feature, ya que en la vida real cada feature seguramente tengan medidas y tolerancias distintas, esto no se hizo para no saturar el backend de información, es algo que veo más viable usando una base de datos.
+
+Realizar feature que tengan más de un bloque de control, es decir que el bloque x, y, z, diameter se retima más de 1 vez en algunos feature, consiguiendo así más mediciones de 1 misma característica y una estructura de frontend diferente. Esto lo realizaría indicando en el backend cuantas veces tiene que aparecer ese bloque de información, de este modo realizaría un objeto que tuviera el bloque X veces repetidos, esto llegaría al frontend y ahí con la ayuda de bucles iría realizando tantas veces como me indique el objetivo la renderización de los bloques.
+
+Hacer aplicación responsive, esto lo haría con la utilización de medidas dinámicas, media queries y con la utilización de bibliotecas como bootstrap. Estas medidas también ayudaría a que la página fuera dinámica con respecto al número de componentes que se rendericen.
+
+Conclusiones de planteamientos:
+
+Dev negativas y positivas: he concluido que la dev y dev out tol deben tener ambos valores, ya que el valor negativo indica que la feature se ha realizado más pequeña que la medida ideal, siendo el valor positivo lo contrario.
+
+Cambios de color del Header: mi lógica para este factor ha sido lo restrictivo. Ya que se trata de una aplicación que mide piezas que deben de ir calculadas con mucha precisión concluyo que la aplicación no pude ser flexible con respecto al estado de los features, por lo que si uno de los controles da rojo el estado de ese feature dará rojo, si no hay rojo pero hay uno amarillo el estado será amarillo, siendo únicamente verde cuando todos los controles sean verde.
+
 
 
 
