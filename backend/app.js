@@ -117,7 +117,7 @@ io.on('connection', (socket) => {
 				randomPiece = null;
 		}
 		socket.emit('newPiece', randomPiece);
-	}, 10000);
+	}, 3000);
 
 	socket.on('disconnect', () => {
 		console.log('Cliente desconectado');

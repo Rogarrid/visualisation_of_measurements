@@ -1,13 +1,14 @@
 import React from 'react';
+import ElementControl from './ElementControl';
 
 //Row containing the names of the controls
 const Controls = () => {
 	return (
 		<div className="row headerControls">
-			<div className="control">Control</div>
-			<div className="control">Dev</div>
-			<div className="control">Dev Out</div>
-			<div className="control"></div>
+			<ElementControl nameControl={"Control"}/>
+			<ElementControl nameControl={"Dev"}/>
+			<ElementControl nameControl={"Dev Out Tol"}/>
+			<ElementControl nameControl={""}/>
 		</div>
 	);
 };
