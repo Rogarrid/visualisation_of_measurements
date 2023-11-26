@@ -17,7 +17,7 @@ app.use(express.json());
 
 let interval;
 
-//value of the measure ideal and tolerance for all features
+//Value of the measure ideal and tolerance for all features
 const tolerance = {
 	x: 10,
 	y: 15,
@@ -37,7 +37,8 @@ const generateRandomMeasure = () => {
 	return Math.random() * 100;
 };
 
-//Assignment of a random measure value and calculation of deviation
+//Assignment of a random measure value.
+//TODO: create the logic to instantiate a control n times
 const generateFeature = (featureName) => {
 	const x = generateRandomMeasure();
 	const y = generateRandomMeasure();
